@@ -10,6 +10,10 @@ import UIKit
 var memory_num : Double  = 0
 
 class Calculator: NSObject {
+    
+    var rad : Bool = true
+    var _2ndpressed : Bool = false
+    var RadCorrect : Double = 1
     enum Operation{
         case UnaryOp((Double)->Double)
         case BinaryOp((Double,Double)->Double)
@@ -17,7 +21,9 @@ class Calculator: NSObject {
         case Constant(Double)
     }
     
-
+    func RadorDeg(){
+        RadCorrect = (rad) ? 1:180/Double.pi
+    }
     
     var operations = [
         "+": Operation.BinaryOp{
@@ -32,7 +38,7 @@ class Calculator: NSObject {
             (op1,op2) in
             return op1 * op2
         },
-        "/": Operation.BinaryOp{
+        "÷": Operation.BinaryOp{
             (op1,op2) in
             return op1 / op2
         },
@@ -47,6 +53,10 @@ class Calculator: NSObject {
             return -op
         },
         "C": Operation.UnaryOp{
+            _ in
+            return 0
+        },
+        "AC": Operation.UnaryOp{
             _ in
             return 0
         },
@@ -87,8 +97,32 @@ class Calculator: NSObject {
             op in
             return tanh(op)
         },
+        "sin^-1":Operation.UnaryOp{
+            op in
+            return asin(op)
+        },
+        "cos^-1":Operation.UnaryOp{
+            op in
+            return acos(op)
+        },
+        "tan^-1":Operation.UnaryOp{
+            op in
+            return atan(op)
+        },
+        "sinh^-1":Operation.UnaryOp{
+            op in
+            return asinh(op)
+        },
+        "cosh^-1":Operation.UnaryOp{
+            op in
+            return acosh(op)
+        },
+        "tanh^-1":Operation.UnaryOp{
+            op in
+            return atanh(op)
+        },
         "e":Operation.Constant(exp(1)),
-        "pi":Operation.Constant(3.141592653589793),
+        "π":Operation.Constant(Double.pi),
         "Rand":Operation.UnaryOp{
             _ in
             return drand48();
@@ -106,6 +140,58 @@ class Calculator: NSObject {
         "ln":Operation.UnaryOp{
             op in
             return log(op)/log(exp(1))
+        },
+        "logy":Operation.BinaryOp{
+            op1,op2 in
+            return log(op1)/log(op2)
+        },
+        "log2":Operation.UnaryOp{
+            op in
+            return log2(op)
+        },
+        "log10":Operation.UnaryOp{
+            op in
+            return log10(op)
+        },
+        "x^2":Operation.UnaryOp{
+            op in
+            return op*op
+        },
+        "x^3":Operation.UnaryOp{
+            op in
+            return pow(op, 3)
+        },
+        "x^y":Operation.BinaryOp{
+            op1,op2 in
+            return pow(op1, op2)
+        },
+        "y^x":Operation.BinaryOp{
+            op1,op2 in
+            return pow(op2, op1)
+        },
+        "2^x":Operation.UnaryOp{
+            op in
+            return pow(2, op)
+        },
+        "e^x":Operation.UnaryOp{
+            op in
+            return exp(op)
+        },
+        "10^x":Operation.UnaryOp{
+            op in
+            return pow(10, op)
+        },
+        "2√x":Operation.UnaryOp{
+            op in
+            return sqrt(op)
+        },
+        "3√x":Operation.UnaryOp{
+            op in
+            return pow(op,1.0/3.0)
+        },
+        "y√x":Operation.BinaryOp{
+            op1,op2 in
+            return pow(op1,1.0/op2)
         },
         "mr":Operation.UnaryOp{
             op in
@@ -140,6 +226,7 @@ class Calculator: NSObject {
     var pendingOp: Intermediate? = nil
     var pendingOp1: Intermediate? = nil
     func performOperation(operation: String,operand: Double) ->Double?{
+        RadorDeg()
         if let op = operations[operation]{
             switch op{
             case .BinaryOp(let function):
