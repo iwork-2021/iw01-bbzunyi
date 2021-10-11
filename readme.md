@@ -4,6 +4,8 @@
 
 横屏竖屏功能展示如下：
 
+![](https://raw.githubusercontent.com)
+
 ![截屏2021-10-10 下午9.48.26](/Users/mac/Desktop/截屏2021-10-10 下午9.48.26.png)
 
 ![截屏2021-10-10 下午9.48.33](/Users/mac/Desktop/截屏2021-10-10 下午9.48.33.png)
