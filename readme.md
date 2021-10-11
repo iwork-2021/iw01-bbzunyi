@@ -4,11 +4,9 @@
 
 横屏竖屏功能展示如下：
 
-![](https://raw.githubusercontent.com)
+![竖屏](https://raw.githubusercontent.com/iwork-2021/iw01-bbzunyi/main/pics/vertical.png)
+![横屏](https://raw.githubusercontent.com/iwork-2021/iw01-bbzunyi/main/pics/horizontal.png)
 
-![截屏2021-10-10 下午9.48.26](/Users/mac/Desktop/截屏2021-10-10 下午9.48.26.png)
-
-![截屏2021-10-10 下午9.48.33](/Users/mac/Desktop/截屏2021-10-10 下午9.48.33.png)
 
 结果展示：https://www.bilibili.com/video/BV1s44y1x7fi/
 
